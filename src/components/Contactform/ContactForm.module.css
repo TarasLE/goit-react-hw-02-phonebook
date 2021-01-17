@@ -1,0 +1,14 @@
+.Container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    border: solid 1px red;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.InputName {
+    /* padding: 0; */
+    margin: 0;
+}
