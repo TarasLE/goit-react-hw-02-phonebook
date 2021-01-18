@@ -14,14 +14,6 @@ const Filter = ({ value, filter }) => (
                 className={styles.FilterInput}
             />
         </label>
-
-        {/* <ul>
-            {filteredElements.map((contact) => (
-                <li key={contact.id}>
-                    {contact.name} : {contact.number}
-                </li>
-            ))}
-        </ul> */}
     </div>
 )
 

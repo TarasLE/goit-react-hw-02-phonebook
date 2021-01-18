@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './ContactForm.module.css'
 import shortid from 'shortid'
+import { Notification } from 'react-pnotify'
 
 export default class ContactForm extends Component {
     static defaultProps = { addContact: '' }
@@ -10,54 +11,57 @@ export default class ContactForm extends Component {
     state = {
         name: '',
         number: '',
+        alert: false,
     }
 
     handleContact = (event) => {
-        // this.dataForApp(event)
         const { name, value } = event.currentTarget
         this.setState({
             [name]: value,
         })
-        // this.props.contactData(this.state)
-        // this.clearInput()
     }
 
     addContact = (event) => {
         event.preventDefault()
-        const contact = {
-            id: shortid.generate(),
-            name: this.state.name,
-            number: this.state.number,
+        if (this.checkContact()) {
+            return
+        } else {
+            const contact = {
+                id: shortid.generate(),
+                name: this.state.name,
+                number: this.state.number,
+            }
+            this.props.contacts.unshift(contact)
+            this.props.refreshState(this.props.contacts)
+            this.clearInput()
         }
-        // console.log(this.props.contacts.unshift(contact))
-
-        this.props.contacts.unshift(contact)
-        // console.log(currentState)
-        this.props.refreshState(this.props.contacts)
-
-        // this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }))
-        this.clearInput()
-        // console.log(currentState)
-        console.log('visible')
-        console.log(this.props.contacts)
-        // console.log(this.props.contacts.push(contact))
     }
-
-    // dataForApp = (event) => {
-    //     const { name, value } = event.currentTarget
-    //     this.setState({
-    //         [name]: value,
-    //     })
-    //     this.props.contactData(this.state)
-    // }
+    checkContact = () => {
+        if (this.props.contacts.length == 0) {
+            return
+        } else if (
+            this.props.contacts.find((contact) => {
+                return (
+                    contact.name.toLowerCase() === this.state.name.toLowerCase()
+                )
+            })
+        ) {
+            this.setState({ alert: true })
+            return true
+        }
+    }
 
     clearInput = () => {
         this.setState({ name: '', number: '' })
     }
 
-    render() {
-        const { refreshState, addContact, contacts } = this.props
+    alertState = () => {
+        this.setState({ alert: false })
+    }
 
+    alert = false
+    render() {
+        const sameContact = this.state.name
         return (
             <div className={styles.Container}>
                 <form>
@@ -81,13 +85,18 @@ export default class ContactForm extends Component {
                         />
                     </label>
                 </form>
-                <button
-                    type="button"
-                    onClick={this.addContact}
-                    // onSubmit={this.clearInput()}
-                >
+                <button type="button" onClick={this.addContact}>
                     Add contact
                 </button>
+                {this.state.alert && (
+                    <div className={styles.Notification}>
+                        <h2>{sameContact} is already in contacts</h2>
+                        <h3>Please check name and try again</h3>
+                        <button type="button" onClick={this.alertState}>
+                            Close Notification
+                        </button>
+                    </div>
+                )}
             </div>
         )
     }

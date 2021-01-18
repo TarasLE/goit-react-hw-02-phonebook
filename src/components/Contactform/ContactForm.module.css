@@ -1,4 +1,5 @@
 .Container {
+    position: relative;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -11,4 +12,20 @@
 .InputName {
     /* padding: 0; */
     margin: 0;
+}
+
+.Notification {
+    position: absolute;
+    top: -10%;
+    left: -35%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    background-color: rgba(0, 120, 201, 0.9);
+    width: 400px;
+    height: 200px;
+    z-index: 1;
 }
