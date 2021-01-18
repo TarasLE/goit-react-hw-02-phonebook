@@ -13,24 +13,53 @@ export default class ContactForm extends Component {
     }
 
     handleContact = (event) => {
+        // this.dataForApp(event)
         const { name, value } = event.currentTarget
         this.setState({
             [name]: value,
         })
-        console.log('from contactform')
-        console.log(this.state)
-        this.props.contactData(this.state)
+        // this.props.contactData(this.state)
+        // this.clearInput()
     }
 
-    // clearInput = () => {
-    //     this.setState({ name: '', number: '' })
+    addContact = (event) => {
+        event.preventDefault()
+        const contact = {
+            id: shortid.generate(),
+            name: this.state.name,
+            number: this.state.number,
+        }
+        // console.log(this.props.contacts.unshift(contact))
+
+        this.props.contacts.unshift(contact)
+        // console.log(currentState)
+        this.props.refreshState(this.props.contacts)
+
+        // this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }))
+        this.clearInput()
+        // console.log(currentState)
+        console.log('visible')
+        console.log(this.props.contacts)
+        // console.log(this.props.contacts.push(contact))
+    }
+
+    // dataForApp = (event) => {
+    //     const { name, value } = event.currentTarget
+    //     this.setState({
+    //         [name]: value,
+    //     })
+    //     this.props.contactData(this.state)
     // }
 
+    clearInput = () => {
+        this.setState({ name: '', number: '' })
+    }
+
     render() {
-        const { addContact } = this.props
+        const { refreshState, addContact, contacts } = this.props
+
         return (
             <div className={styles.Container}>
-                {/* <h3 className={styles.InputName}>Name</h3> */}
                 <form>
                     <label>
                         Name <br />
@@ -39,7 +68,6 @@ export default class ContactForm extends Component {
                             value={this.state.name}
                             name="name"
                             onChange={this.handleContact}
-                            // onSubmit={addContact}
                         />
                     </label>
                     <br />
@@ -53,7 +81,11 @@ export default class ContactForm extends Component {
                         />
                     </label>
                 </form>
-                <button type="button" onClick={addContact}>
+                <button
+                    type="button"
+                    onClick={this.addContact}
+                    // onSubmit={this.clearInput()}
+                >
                     Add contact
                 </button>
             </div>

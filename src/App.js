@@ -20,16 +20,21 @@ export default class App extends Component {
     //     number: '',
     // }
     // }
-    state = {
-        contacts: [
-            { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-            { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-            { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-            { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-        ],
-        filter: '',
-        // name: '',
-        // number: '',
+
+    // refreshList = false
+
+    // refreshContactsList = (state) => {
+    //     this.refreshState = state
+    //     console.log(state)
+    //     return state
+    // }
+
+    // setState({ [type]:test})
+
+    refreshContactsList = (state) => {
+        this.setState({
+            contacts: state,
+        })
     }
 
     handleContact = (event) => {
@@ -57,29 +62,28 @@ export default class App extends Component {
         return data
     }
     contactDataTemp = ''
-    addContact = (event) => {
-        // this.contactData
-        console.log('this is dataTemp')
-        console.log(this.contactDataTemp)
+    // refreshState = false
 
-        event.preventDefault()
-        // console.log('working addContact')
-        // const contact = this.state.name
-
-        const contact = {
-            id: shortid.generate(),
-            name: this.contactDataTemp.name,
-            number: this.contactDataTemp.number,
-        }
-        // const contact = []
-        // contact.push(this.state.name)
-        console.log(contact)
-        this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }))
-        // this.state.contacts.push(contact)
-        console.log(this.state.contacts)
-        this.clearInput()
-        // event.currentTarget.value = ''
+    state = {
+        contacts: [
+            { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+            { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+            { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+            { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+        ],
+        filter: '',
     }
+
+    // addContact = (event) => {
+    //     event.preventDefault()
+    //     const contact = {
+    //         id: shortid.generate(),
+    //         name: this.contactDataTemp.name,
+    //         number: this.contactDataTemp.number,
+    //     }
+    //     this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }))
+    //     // this.clearInput()
+    // }
 
     clearInput = () => {
         this.setState({ name: '', number: '' })
@@ -87,16 +91,8 @@ export default class App extends Component {
 
     contactFilter = (event) => {
         this.setState({ filter: event.currentTarget.value })
-        console.log(this.state.filter)
-        // console.log(this.filteredElements)
-
-        // console.log(normalizedFilter)
-        // const filteredElements = this.state.contacts.filter((contact) =>
-        //     contact.name.toLowerCase().includes(normalizedFilter)
-        // )
-
-        // console.log(this.filteredElements)
     }
+
     // filteredElements = []
     // normalizedFilter = this.state.filter.toLowerCase()
 
@@ -124,6 +120,9 @@ export default class App extends Component {
                 <ContactForm
                     addContact={this.addContact}
                     contactData={this.contactData}
+                    contacts={this.state.contacts}
+                    refreshStateAfter={this.refreshState}
+                    refreshState={this.refreshContactsList}
                 />
                 <h1>Contacts</h1>
                 <ContactList contacts={filteredElements} />
