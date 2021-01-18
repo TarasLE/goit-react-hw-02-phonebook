@@ -5,12 +5,11 @@ import styles from './Filter.module.css'
 export default function Filter({ value, filter }) {
     return (
         <div className={styles.Container}>
-            <label>
+            <label className={styles.InputContainer}>
                 <span className={styles.FilterHeader}>
-                    {' '}
                     Find contacts by Name
                 </span>
-                <br />
+
                 <input
                     type="text"
                     value={value}

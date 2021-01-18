@@ -1,23 +1,19 @@
 .Container {
     position: relative;
-    padding: 30px;
     display: flex;
     flex-direction: column;
-    width: max-content;
-    border: solid 1px red;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
 }
 
 .InputName {
-    /* padding: 0; */
     margin: 0;
 }
 
 .Notification {
+    padding: 30px;
     position: absolute;
-    top: -10%;
-    left: -35%;
+    top: 0%;
+    left: -30%;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -28,4 +24,22 @@
     width: 400px;
     height: 200px;
     z-index: 1;
+}
+
+.FormInput {
+    width: 100%;
+    height: 25px;
+    padding: 0;
+    margin: 0;
+}
+
+.FormBtn {
+    margin-top: 10px;
+    height: 50px;
+    background-color: rgb(238, 250, 130);
+}
+
+.FormBtn:hover {
+    color: #ffffff;
+    background-color: rgb(4, 155, 72);
 }

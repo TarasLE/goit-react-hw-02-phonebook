@@ -72,6 +72,7 @@ export default class ContactForm extends Component {
                             value={this.state.name}
                             name="name"
                             onChange={this.handleContact}
+                            className={styles.FormInput}
                         />
                     </label>
                     <br />
@@ -82,17 +83,26 @@ export default class ContactForm extends Component {
                             value={this.state.number}
                             name="number"
                             onChange={this.handleContact}
+                            className={styles.FormInput}
                         />
                     </label>
                 </form>
-                <button type="button" onClick={this.addContact}>
+                <button
+                    type="button"
+                    onClick={this.addContact}
+                    className={styles.FormBtn}
+                >
                     Add contact
                 </button>
                 {this.state.alert && (
                     <div className={styles.Notification}>
                         <h2>{sameContact} is already in contacts</h2>
                         <h3>Please check name and try again</h3>
-                        <button type="button" onClick={this.alertState}>
+                        <button
+                            type="button"
+                            onClick={this.alertState}
+                            className={styles.FormBtn}
+                        >
                             Close Notification
                         </button>
                     </div>
@@ -101,68 +111,3 @@ export default class ContactForm extends Component {
         )
     }
 }
-
-// ---------------------------------------------------------------------------------------------------------------------------
-// ---------------------------------------------------------------------------------------------------------------------------
-// export default function ContactForm({
-//     name,
-//     handleContact,
-//     addContact,
-//     contacts,
-//     number,
-//     filteredElements,
-// }) {
-//     return (
-//         <div className={styles.Container}>
-//             {/* <h3 className={styles.InputName}>Name</h3> */}
-//             <form>
-//                 <label>
-//                     Name <br />
-//                     <input
-//                         type="text"
-//                         value={name}
-//                         name="name"
-//                         onChange={handleContact}
-//                         // onSubmit={addContact}
-//                     />
-//                 </label>
-//                 <br />
-//                 <label>
-//                     Number <br />
-//                     <input
-//                         type="text"
-//                         value={number}
-//                         name="number"
-//                         onChange={handleContact}
-//                     />
-//                 </label>
-//             </form>
-//             <button type="button" onClick={addContact}>
-//                 Add contact
-//             </button>
-//             <h1>Contacts</h1>
-//             <ul>
-//                 {contacts.map((contact) => (
-//                     <li key={contact.id}>
-//                         {contact.name} : {contact.number}
-//                     </li>
-//                 ))}
-//             </ul>
-//             {/* <br />
-//             <label>
-//                 Find contacts by Name
-//                 <br />
-//                 <input
-//                     type="text"
-//                     value={number}
-//                     name="number"
-//                     onChange={handleContact}
-//                 />
-//             </label> */}
-//         </div>
-//     )
-// }
-
-// ContactForm.propTypes = {
-//     contacts: PropTypes.array.isRequired,
-// }

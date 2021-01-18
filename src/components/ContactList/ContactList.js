@@ -16,12 +16,13 @@ export default class ContactList extends Component {
                 <ul>
                     {this.props.contacts.map((contact) => (
                         <li key={contact.id} className={styles.Contact}>
-                            <span>
+                            <span className={styles.ContactInfo}>
                                 {contact.name} : {contact.number}
                             </span>
                             <button
                                 type="button"
                                 onClick={() => this.deleteContact(contact.id)}
+                                className={styles.DeleteBtn}
                             >
                                 Delete
                             </button>
