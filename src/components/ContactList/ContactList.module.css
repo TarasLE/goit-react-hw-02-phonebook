@@ -1,0 +1,24 @@
+.Container {
+    display: flex;
+    padding: 0px;
+    flex-direction: column;
+    width: 100%;
+    border: solid 1px red;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+
+.Contact {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+ul {
+    padding: 0;
+    width: inherit;
+    text-decoration: dashed;
+}

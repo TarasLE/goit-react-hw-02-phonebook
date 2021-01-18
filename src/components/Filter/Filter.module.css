@@ -14,3 +14,8 @@
     width: 100%;
     /* box-sizing: border-box; */
 }
+
+.FilterHeader {
+    margin: 0;
+    padding: 0;
+}

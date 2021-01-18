@@ -1,18 +1,34 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import styles from './ContactList.module.css'
 
-export default function ContactList({ contacts }) {
-    return (
-        <div>
-            <ul>
-                {contacts.map((contact) => (
-                    <li key={contact.id}>
-                        {contact.name} : {contact.number}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )
+export default class ContactList extends Component {
+    deleteContact = (contactId) => {
+        const test = this.props.contacts.filter((contact) => {
+            return contact.id != contactId
+        })
+        this.props.refreshState(test)
+    }
+
+    render() {
+        return (
+            <div className={styles.Container}>
+                <ul>
+                    {this.props.contacts.map((contact) => (
+                        <li key={contact.id} className={styles.Contact}>
+                            <span>
+                                {contact.name} : {contact.number}
+                            </span>
+                            <button
+                                type="button"
+                                onClick={() => this.deleteContact(contact.id)}
+                            >
+                                Delete
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )
+    }
 }
-
-ContactList.propTypes = {}

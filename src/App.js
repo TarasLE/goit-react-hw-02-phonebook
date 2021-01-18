@@ -39,12 +39,14 @@ export default class App extends Component {
                 <ContactForm
                     addContact={this.addContact}
                     contacts={this.state.contacts}
-                    refreshStateAfter={this.refreshState}
                     refreshState={this.refreshContactsList}
                 />
                 <h1>Contacts</h1>
                 <Filter value={this.state.filter} filter={this.contactFilter} />
-                <ContactList contacts={filteredElements} />
+                <ContactList
+                    contacts={filteredElements}
+                    refreshState={this.refreshContactsList}
+                />
             </div>
         )
     }
