@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './ContactForm.module.css'
 import shortid from 'shortid'
-import { Notification } from 'react-pnotify'
 
 export default class ContactForm extends Component {
     static defaultProps = { addContact: '' }
